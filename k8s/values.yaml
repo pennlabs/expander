@@ -1,0 +1,13 @@
+deploy_version: 0.1.11
+image_tag: latest
+
+applications:
+  - name: expander
+    image: pennlabs/expander
+    ingress:
+      hosts:
+        - host: u.pennlabs.org
+          paths: ["/"]
+    extraEnv:
+      - name: PLATFORM_URL
+        value: https://platform.pennlabs.org/org/urls/get

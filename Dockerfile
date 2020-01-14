@@ -1,7 +1,19 @@
-FROM python:3
-ADD . /
-WORKDIR /
-ADD requirements.txt /
-RUN pip install -r requirements.txt
-EXPOSE 5000
-CMD ["gunicorn", "-b", "0.0.0.0:5000", "main:app"]
+FROM python:3-slim
+
+LABEL maintainer="Penn Labs"
+
+WORKDIR /app/
+
+# Install pipenv
+RUN pip install pipenv
+
+# Copy project dependencies
+COPY Pipfile* /app/
+
+# Install project dependencies
+RUN pipenv install --system
+
+# Copy project files
+COPY . /app/
+
+CMD ["gunicorn", "-b", "0.0.0.0:80", "main:app"]
