@@ -10,4 +10,4 @@ applications:
           paths: ["/"]
     extraEnv:
       - name: PLATFORM_URL
-        value: https://platform.pennlabs.org/org/urls/get
+        value: https://platform.pennlabs.org/s
